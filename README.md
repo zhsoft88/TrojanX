@@ -19,6 +19,7 @@ The macOS client of [Trojan](https://github.com/trojan-gfw/trojan)
 - Custom rules for PAC.
 - HTTP Proxy by [privoxy](http://www.privoxy.org/)
 - Support import server profiles from url of gui-config.json (by zhsoft88)
+  支持导入gui-config.json配置
 
 ~~- Share your server profiles by qrcode or url.~~
 ~~- Import server profile urls from pasteboard.~~
