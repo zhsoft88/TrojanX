@@ -10,6 +10,7 @@
 		08FCA0FF1E24BE1A0070984F /* example-gui-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 08FCA0FE1E24BE1A0070984F /* example-gui-config.json */; };
 		258E511BA910B0521B24DAB8 /* Pods_TrojanX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283ED1A8E9B711AC65670031 /* Pods_TrojanX.framework */; };
 		385B0A582377AEA500FF8849 /* trojan in Resources */ = {isa = PBXBuildFile; fileRef = 385B0A572377AEA500FF8849 /* trojan */; };
+		6FCB51382438C4340048D432 /* ServerProfile+guiconfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB51372438C4340048D432 /* ServerProfile+guiconfig.swift */; };
 		9B07EFAC1D048E880052D9DF /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA81D048E880052D9DF /* menu_icon@2x.png */; };
 		9B07EFAD1D048E880052D9DF /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA91D048E880052D9DF /* menu_icon.png */; };
 		9B07EFAE1D048E880052D9DF /* menu_icon_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFAA1D048E880052D9DF /* menu_icon_disabled.png */; };
@@ -85,7 +86,7 @@
 			containerPortal = 9B0BFFDD1D0460A70040E62B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9B0BFFE41D0460A70040E62B;
-			remoteInfo = "TrojanX";
+			remoteInfo = TrojanX;
 		};
 		9B3FFF521D09E2B30019A709 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -137,6 +138,7 @@
 		50D54926AA21B0D4D8DD9C4F /* Pods-TrojanXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrojanXUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrojanXUITests/Pods-TrojanXUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58907E7F50405104B42CB189 /* Pods-TrojanXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrojanXUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrojanXUITests/Pods-TrojanXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B6203C1228FCD3D365814AC /* Pods-TrojanXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrojanXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrojanXTests/Pods-TrojanXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6FCB51372438C4340048D432 /* ServerProfile+guiconfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerProfile+guiconfig.swift"; sourceTree = "<group>"; };
 		9B07EFA81D048E880052D9DF /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		9B07EFA91D048E880052D9DF /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		9B07EFAA1D048E880052D9DF /* menu_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_disabled.png; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				9B0BFFEA1D0460A70040E62B /* Assets.xcassets */,
 				9B0BFFEC1D0460A70040E62B /* MainMenu.xib */,
 				9B0BFFEF1D0460A70040E62B /* Info.plist */,
+				6FCB51372438C4340048D432 /* ServerProfile+guiconfig.swift */,
 				9BEEF06D1D04DCE400FC52B3 /* ServerProfile.swift */,
 				9BEEF06F1D04DDB100FC52B3 /* ServerProfileManager.swift */,
 				9BEEF0771D04FE8A00FC52B3 /* LaunchAgentUtils.swift */,
@@ -361,7 +364,7 @@
 				9B5831F41E7302F8009D5B7D /* ShortcutsController.h */,
 				9B5831F51E7302F8009D5B7D /* ShortcutsController.m */,
 			);
-			path = "TrojanX";
+			path = TrojanX;
 			sourceTree = "<group>";
 		};
 		9B0BFFF71D0460A70040E62B /* TrojanXTests */ = {
@@ -371,7 +374,7 @@
 				9B0BFFF81D0460A70040E62B /* TrojanXTests.swift */,
 				9B0BFFFA1D0460A70040E62B /* Info.plist */,
 			);
-			path = "TrojanXTests";
+			path = TrojanXTests;
 			sourceTree = "<group>";
 		};
 		9B3FFF0B1D05D8B80019A709 /* UI */ = {
@@ -469,7 +472,7 @@
 				9B3FFF531D09E2B30019A709 /* PBXTargetDependency */,
 			);
 			name = TrojanX;
-			productName = "TrojanX";
+			productName = TrojanX;
 			productReference = 9B0BFFE51D0460A70040E62B /* TrojanX.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -490,7 +493,7 @@
 				9B0BFFF61D0460A70040E62B /* PBXTargetDependency */,
 			);
 			name = TrojanXTests;
-			productName = "TrojanXTests";
+			productName = TrojanXTests;
 			productReference = 9B0BFFF41D0460A70040E62B /* TrojanXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -520,7 +523,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = qiuyuzhou;
 				TargetAttributes = {
 					9B0BFFE41D0460A70040E62B = {
@@ -539,10 +542,9 @@
 			};
 			buildConfigurationList = 9B0BFFE01D0460A70040E62B /* Build configuration list for PBXProject "TrojanX" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -793,6 +795,7 @@
 				9B3FFF141D0705810019A709 /* Notifications.swift in Sources */,
 				9BEEF0701D04DDB100FC52B3 /* ServerProfileManager.swift in Sources */,
 				9BEEF06E1D04DCE400FC52B3 /* ServerProfile.swift in Sources */,
+				6FCB51382438C4340048D432 /* ServerProfile+guiconfig.swift in Sources */,
 				9B3FFF0D1D05FEB30019A709 /* Utils.swift in Sources */,
 				9BEEF0751D04EF3E00FC52B3 /* PreferencesWindowController.swift in Sources */,
 				9B0BFFE91D0460A70040E62B /* AppDelegate.swift in Sources */,
@@ -1006,12 +1009,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/libcork/include/",
 					"$(SRCROOT)/libipset/include/",
 				);
-				INFOPLIST_FILE = "TrojanX/Info.plist";
+				INFOPLIST_FILE = TrojanX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1020,7 +1024,7 @@
 					"$(PROJECT_DIR)/TrojanX/simple-obfs",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = TrojanX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TrojanX/TrojanX-Bridging-Header.h";
@@ -1037,12 +1041,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/libcork/include/",
 					"$(SRCROOT)/libipset/include/",
 				);
-				INFOPLIST_FILE = "TrojanX/Info.plist";
+				INFOPLIST_FILE = TrojanX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1051,7 +1056,7 @@
 					"$(PROJECT_DIR)/TrojanX/simple-obfs",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = TrojanX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TrojanX/TrojanX-Bridging-Header.h";
@@ -1066,7 +1071,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "TrojanXTests/Info.plist";
+				INFOPLIST_FILE = TrojanXTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TrojanXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1083,7 +1088,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "TrojanXTests/Info.plist";
+				INFOPLIST_FILE = TrojanXTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TrojanXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1098,7 +1103,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B4E6A97CA843F3943524B686 /* Pods-proxy_conf_helper.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1108,7 +1113,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 297AF069022A197FD8E9D226 /* Pods-proxy_conf_helper.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

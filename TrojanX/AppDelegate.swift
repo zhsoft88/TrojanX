@@ -278,12 +278,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
         }
         if let text = pb.string(forType: NSPasteboard.PasteboardType.string) {
-            var urls = text.split(separator: "\n")
+            let urls = text.split(separator: "\n")
                 .map { String($0).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
                 .map { URL(string: $0) }
                 .filter { $0 != nil }
                 .map { $0! }
-            urls = urls.filter { $0.scheme == "trojan" }
+              if urls.isEmpty {
+                return
+              }
+//            urls = urls.filter { $0.scheme == "trojan" }
             
             NotificationCenter.default.post(
                 name: Notification.Name(rawValue: "NOTIFY_FOUND_SS_URL"), object: nil
@@ -549,20 +552,42 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 subtitle = "By import from pasteboard".localized
             }
             
+            let group = DispatchGroup()
             for url in urls {
-                if let profile = ServerProfile(url: url) {
+                if url.scheme == "trojan",
+                  let profile = ServerProfile(url: url) {
                     mgr.profiles.append(profile)
                     addCount = addCount + 1
+                } else if url.lastPathComponent == "gui-config.json" {
+                   group.enter()
+                   let task = URLSession.shared.dataTask(with: url) { (data, _, _) in
+                     guard let data = data else {
+                       group.leave()
+                       return
+                     }
+
+                     let profiles = ServerProfile.profilesFromGuiConfigJson(data)
+                     DispatchQueue.main.async {
+                       for profile in profiles {
+                         mgr.profiles.append(profile)
+                         addCount = addCount + 1
+                       }
+                       group.leave()
+                     }
+                   }
+                   task.resume()
                 }
             }
             
-            if addCount > 0 {
-                sendNotify("Add \(addCount) Shadowsocks Server Profile".localized, subtitle, "")
-                mgr.save()
-                NotificationCenter.default
-                    .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
-            } else {
-                sendNotify("", "", "Not found valid qrcode or url of shadowsocks profile".localized)
+            group.notify(queue: DispatchQueue.main) {
+              if addCount > 0 {
+                  sendNotify("Add \(addCount) Shadowsocks Server Profile".localized, subtitle, "")
+                  mgr.save()
+                  NotificationCenter.default
+                      .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
+              } else {
+                  sendNotify("", "", "Not found valid qrcode or url of shadowsocks profile".localized)
+              }
             }
         }
     }
