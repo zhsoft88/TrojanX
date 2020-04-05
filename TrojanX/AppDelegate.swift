@@ -11,6 +11,13 @@ import Carbon
 import RxCocoa
 import RxSwift
 
+// zhsoft88: for restore origin pac.
+var originProxyAutoConfigURLString = ""
+
+func updateOriginProxyAutoConfigURLString() {
+  originProxyAutoConfigURLString = ProxyConfig.proxyAutoConfigURLString
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
@@ -72,7 +79,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+        updateOriginProxyAutoConfigURLString()
+
         _ = LaunchAtLoginController()// Ensure set when launch
         
         NSUserNotificationCenter.default.delegate = self
@@ -206,6 +214,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
         } else {
             ProxyConfHelper.disableProxy()
+            // zhsoft88: restore origin pac
+            if !originProxyAutoConfigURLString.isEmpty,
+              let url = URL(string: originProxyAutoConfigURLString) {
+              ProxyConfHelper.enablePACProxy(url)
+            }
         }
     }
 
@@ -219,6 +232,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         var isOn = UserDefaults.standard.bool(forKey: "ShadowsocksOn")
         isOn = !isOn
         defaults.set(isOn, forKey: "ShadowsocksOn")
+        if isOn {
+          updateOriginProxyAutoConfigURLString()
+        }
         
         self.updateMainMenu()
         self.applyConfig()

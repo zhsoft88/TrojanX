@@ -144,7 +144,10 @@ GCDWebServer *webServer =nil;
     [self startPACServer: PACFilePath];
     
     NSURL* url = [NSURL URLWithString: [self getHttpPACUrl]];
-    
+    [self enablePACProxy:url];
+}
+
++ (void)enablePACProxy:(NSURL*)url {
     NSMutableArray* args = [@[@"--mode", @"auto", @"--pac-url", [url absoluteString]]mutableCopy];
     
     [self addArguments4ManualSpecifyNetworkServices:args];

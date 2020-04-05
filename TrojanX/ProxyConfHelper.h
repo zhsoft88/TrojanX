@@ -15,6 +15,7 @@
 + (void)install;
 
 + (void)enablePACProxy;
++ (void)enablePACProxy:(NSURL*)url;
 
 + (void)enableGlobalProxy;
 

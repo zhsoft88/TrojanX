@@ -10,6 +10,7 @@
 		08FCA0FF1E24BE1A0070984F /* example-gui-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 08FCA0FE1E24BE1A0070984F /* example-gui-config.json */; };
 		258E511BA910B0521B24DAB8 /* Pods_TrojanX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283ED1A8E9B711AC65670031 /* Pods_TrojanX.framework */; };
 		385B0A582377AEA500FF8849 /* trojan in Resources */ = {isa = PBXBuildFile; fileRef = 385B0A572377AEA500FF8849 /* trojan */; };
+		6F1432302439C868001B048D /* ProxyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F14322F2439C868001B048D /* ProxyConfig.m */; };
 		6FCB51382438C4340048D432 /* ServerProfile+guiconfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB51372438C4340048D432 /* ServerProfile+guiconfig.swift */; };
 		9B07EFAC1D048E880052D9DF /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA81D048E880052D9DF /* menu_icon@2x.png */; };
 		9B07EFAD1D048E880052D9DF /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA91D048E880052D9DF /* menu_icon.png */; };
@@ -138,6 +139,8 @@
 		50D54926AA21B0D4D8DD9C4F /* Pods-TrojanXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrojanXUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrojanXUITests/Pods-TrojanXUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58907E7F50405104B42CB189 /* Pods-TrojanXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrojanXUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrojanXUITests/Pods-TrojanXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B6203C1228FCD3D365814AC /* Pods-TrojanXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrojanXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrojanXTests/Pods-TrojanXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F14322D2439C868001B048D /* ProxyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyConfig.h; sourceTree = "<group>"; };
+		6F14322F2439C868001B048D /* ProxyConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxyConfig.m; sourceTree = "<group>"; };
 		6FCB51372438C4340048D432 /* ServerProfile+guiconfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerProfile+guiconfig.swift"; sourceTree = "<group>"; };
 		9B07EFA81D048E880052D9DF /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		9B07EFA91D048E880052D9DF /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 		9B0BFFE71D0460A70040E62B /* TrojanX */ = {
 			isa = PBXGroup;
 			children = (
+				6F14322D2439C868001B048D /* ProxyConfig.h */,
+				6F14322F2439C868001B048D /* ProxyConfig.m */,
 				9BB706A51D1B982300551F0E /* SWBApplication.m */,
 				9BB706A61D1B982300551F0E /* SWBApplication.h */,
 				9B3FFF511D09DBA20019A709 /* TrojanX-Bridging-Header.h */,
@@ -799,6 +804,7 @@
 				9B3FFF0D1D05FEB30019A709 /* Utils.swift in Sources */,
 				9BEEF0751D04EF3E00FC52B3 /* PreferencesWindowController.swift in Sources */,
 				9B0BFFE91D0460A70040E62B /* AppDelegate.swift in Sources */,
+				6F1432302439C868001B048D /* ProxyConfig.m in Sources */,
 				9BA04B231D23D5A5005AAD7F /* ProxyConfTool.m in Sources */,
 				9B5831FF1E741969009D5B7D /* PreferencesWinController.swift in Sources */,
 				9BEEF0781D04FE8A00FC52B3 /* LaunchAgentUtils.swift in Sources */,
@@ -1024,7 +1030,7 @@
 					"$(PROJECT_DIR)/TrojanX/simple-obfs",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TrojanX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TrojanX/TrojanX-Bridging-Header.h";
@@ -1056,7 +1062,7 @@
 					"$(PROJECT_DIR)/TrojanX/simple-obfs",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TrojanX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TrojanX/TrojanX-Bridging-Header.h";
