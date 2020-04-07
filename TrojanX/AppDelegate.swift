@@ -313,7 +313,53 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
 
-    @IBAction func selectPACMode(_ sender: NSMenuItem) {
+  @IBAction func importServerProfilesFromFile(_ sender: Any) {
+    let panel = NSOpenPanel()
+    panel.nameFieldStringValue = "gui-config.json"
+    let result = panel.runModal()
+    guard result == .OK,
+      let url = panel.url,
+      let data = try? Data(contentsOf: url) else { return }
+    let profiles = ServerProfile.profilesFromGuiConfigJson(data)
+    let mgr = ServerProfileManager.instance
+    for profile in profiles {
+      mgr.profiles.append(profile)
+    }
+    if !profiles.isEmpty {
+        sendNotify("Add \(profiles.count) Shadowsocks Server Profile".localized, "", "")
+        mgr.save()
+        NotificationCenter.default
+            .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
+    } else {
+        sendNotify("", "", "Not found valid shadowsocks profile".localized)
+    }
+  }
+
+  @IBAction func exportServerProfilesToFile(_ sender: Any) {
+    let mgr = ServerProfileManager.instance
+    typealias DICT = [String:Any]
+    var configs = [DICT]()
+    for profile in mgr.profiles {
+      var config = DICT()
+      config["server"] = profile.serverHost
+      config["server_port"] = profile.serverPort
+      config["password"] = profile.password
+      config["remarks"] = profile.remark
+      configs.append(config)
+    }
+    var dict = DICT()
+    dict["configs"] = configs
+    guard let data = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted) else { return }
+    let panel = NSSavePanel()
+    panel.canCreateDirectories = true
+    panel.nameFieldStringValue = "gui-config.json"
+    let result = panel.runModal()
+    guard result == .OK,
+      let url = panel.url else { return }
+    _ = try? data.write(to: url)
+  }
+
+  @IBAction func selectPACMode(_ sender: NSMenuItem) {
         let defaults = UserDefaults.standard
         defaults.setValue("auto", forKey: "ShadowsocksRunningMode")
         updateRunningModeMenu()
@@ -539,20 +585,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
-    func handleFoundSSURL(_ note: Notification) {
         let sendNotify = {
             (title: String, subtitle: String, infoText: String) in
-            
+
             let userNote = NSUserNotification()
             userNote.title = title
             userNote.subtitle = subtitle
             userNote.informativeText = infoText
             userNote.soundName = NSUserNotificationDefaultSoundName
-            
+
             NSUserNotificationCenter.default
                 .deliver(userNote);
         }
-        
+
+    func handleFoundSSURL(_ note: Notification) {
+
         if let userInfo = (note as NSNotification).userInfo {
             let urls: [URL] = userInfo["urls"] as! [URL]
             
@@ -597,12 +644,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             
             group.notify(queue: DispatchQueue.main) {
               if addCount > 0 {
-                  sendNotify("Add \(addCount) Shadowsocks Server Profile".localized, subtitle, "")
+                  self.sendNotify("Add \(addCount) Shadowsocks Server Profile".localized, subtitle, "")
                   mgr.save()
                   NotificationCenter.default
                       .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
               } else {
-                  sendNotify("", "", "Not found valid qrcode or url of shadowsocks profile".localized)
+                  self.sendNotify("", "", "Not found valid qrcode or url of shadowsocks profile".localized)
               }
             }
         }

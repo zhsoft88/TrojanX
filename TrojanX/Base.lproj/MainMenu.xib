@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -12,7 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ShadowsocksX_NG" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TrojanX" customModuleProvider="target">
             <connections>
                 <outlet property="autoModeMenuItem" destination="r07-Gu-aEz" id="9aH-pQ-Rgi"/>
                 <outlet property="copyHttpProxyExportCmdLineMenuItem" destination="lg6-To-GZA" id="VTb-he-dg4"/>
@@ -90,6 +90,18 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showShareServerProfiles:" target="Voe-Tx-rLC" id="3Qv-n1-5h1"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Import Server Profiles From File" id="L2L-8d-I02">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="importServerProfilesFromFile:" target="Voe-Tx-rLC" id="UxU-ov-Zbl"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Export Server Profiles To File" id="Rca-eE-z7C">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="exportServerProfilesToFile:" target="Voe-Tx-rLC" id="GMI-CJ-EQF"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vwY-hQ-ZIz"/>
