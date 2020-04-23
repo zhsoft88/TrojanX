@@ -38,6 +38,18 @@ class ServerProfile: NSObject, NSCopying {
             self.password = pwd;
         }
     }
+
+    convenience init?(subscription: String) {
+      var urlstring = subscription
+      var remark = ""
+      if let idx = subscription.firstIndex(of: "#") {
+        urlstring = String(subscription[subscription.startIndex..<idx])
+        remark = String(subscription[subscription.index(after: idx)...])
+      }
+      guard let url = URL(string: urlstring) else { return nil }
+      self.init(url: url)
+      self.remark = remark
+    }
     
     public func copy(with zone: NSZone? = nil) -> Any {
         let copy = ServerProfile()

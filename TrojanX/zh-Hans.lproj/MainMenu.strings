@@ -14,6 +14,9 @@
 /* Class = "NSMenuItem"; title = "Turn TrojanX On"; ObjectID = "GSu-Tf-StS"; */
 "GSu-Tf-StS.title" = "打开 TrojanX";
 
+/* Class = "NSMenuItem"; title = "Import Subscription URL From Pasteboard"; ObjectID = "GjI-a1-vTa"; */
+"GjI-a1-vTa.title" = "从剪贴板导入服务器订阅链接";
+
 /* Class = "NSMenu"; title = "ShadowsocksX-NG"; ObjectID = "Hob-KD-bx9"; */
 "Hob-KD-bx9.title" = "TrojanX";
 

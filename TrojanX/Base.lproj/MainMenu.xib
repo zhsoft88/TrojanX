@@ -86,6 +86,12 @@
                         <action selector="importProfileURLFromPasteboard:" target="Voe-Tx-rLC" id="RwL-Ms-BaC"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Import Subscription URL From Pasteboard" id="GjI-a1-vTa">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="importSubscritionURLFromPasteboard:" target="Voe-Tx-rLC" id="gKZ-If-lCc"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Share Server Profiles..." id="r5z-RB-LIZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

@@ -20,7 +20,7 @@
  * ./AppDelegate.swift
  */
 
-"Add \(addCount) Shadowsocks Server Profile" = "Add \(addCount) Trojan Server Profile";
+"Add %d Shadowsocks Server Profile" = "Add %d Trojan Server Profile";
 
 "Not found valid qrcode or url of shadowsocks profile" = "Not found valid qrcode or url of trojan profile";
 "Not found valid shadowsocks profile" = "Not found valid shadowsocks profile";

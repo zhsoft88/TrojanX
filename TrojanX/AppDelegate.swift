@@ -313,6 +313,66 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
 
+  func urlsFromPasteboard() -> [URL] {
+    let pb = NSPasteboard.general
+    if #available(OSX 10.13, *) {
+      if let text = pb.string(forType: NSPasteboard.PasteboardType.URL),
+        let url = URL(string: text) {
+          return [url]
+      }
+    }
+    if let text = pb.string(forType: NSPasteboard.PasteboardType.string) {
+      let urls = text.components(separatedBy: CharacterSet.newlines)
+        .map { String($0).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
+        .map { URL(string: $0) }
+        .filter { $0 != nil }
+        .map { $0! }
+        return urls
+    }
+    return []
+  }
+
+  func addProfiles(_ profiles: [ServerProfile]) {
+    let mgr = ServerProfileManager.instance
+    for profile in profiles {
+      mgr.profiles.append(profile)
+    }
+    if !profiles.isEmpty {
+        sendNotify(String(format: "Add %d Shadowsocks Server Profile".localized, profiles.count), "", "")
+        mgr.save()
+        NotificationCenter.default
+            .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
+    } else {
+        sendNotify("", "", "Not found valid shadowsocks profile".localized)
+    }
+  }
+
+  @IBAction func importSubscritionURLFromPasteboard(_ sender: Any) {
+    let urls = urlsFromPasteboard()
+    if urls.isEmpty {
+      return
+    }
+
+    let task = URLSession.shared.dataTask(with: urls.first!) { (data, _, _) in
+      guard let data = data,
+        let decoded = Data(base64Encoded: data),
+        let text = String(data: decoded, encoding: String.Encoding.utf8) else { return }
+      let subscriptions = text.components(separatedBy: CharacterSet.newlines)
+        .map { String($0).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
+        .filter { !$0.isEmpty }
+      var profiles = [ServerProfile]()
+      for subscription in subscriptions {
+        if let profile = ServerProfile(subscription: subscription) {
+          profiles.append(profile)
+        }
+      }
+      DispatchQueue.main.async {
+        self.addProfiles(profiles)
+      }
+    }
+    task.resume()
+  }
+
   @IBAction func importServerProfilesFromFile(_ sender: Any) {
     let panel = NSOpenPanel()
     panel.nameFieldStringValue = "gui-config.json"
@@ -321,18 +381,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
       let url = panel.url,
       let data = try? Data(contentsOf: url) else { return }
     let profiles = ServerProfile.profilesFromGuiConfigJson(data)
-    let mgr = ServerProfileManager.instance
-    for profile in profiles {
-      mgr.profiles.append(profile)
-    }
-    if !profiles.isEmpty {
-        sendNotify("Add \(profiles.count) Shadowsocks Server Profile".localized, "", "")
-        mgr.save()
-        NotificationCenter.default
-            .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
-    } else {
-        sendNotify("", "", "Not found valid shadowsocks profile".localized)
-    }
+    addProfiles(profiles)
   }
 
   @IBAction func exportServerProfilesToFile(_ sender: Any) {
@@ -644,7 +693,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             
             group.notify(queue: DispatchQueue.main) {
               if addCount > 0 {
-                  self.sendNotify("Add \(addCount) Shadowsocks Server Profile".localized, subtitle, "")
+                  self.sendNotify(String(format: "Add %d Shadowsocks Server Profile".localized, addCount), subtitle, "")
                   mgr.save()
                   NotificationCenter.default
                       .post(name: NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
